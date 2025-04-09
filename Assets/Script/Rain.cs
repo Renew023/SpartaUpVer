@@ -55,7 +55,7 @@ public class Rain : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("충돌");
         if(collision.gameObject.CompareTag("Ground"))
@@ -65,9 +65,27 @@ public class Rain : MonoBehaviour
 
         if(collision.gameObject.CompareTag("Player"))
         {
-            GameManager.Instance.AddScore(score);
-            Destroy(this.gameObject);
+            Invoke("Playerscore", 0.005f);
         }
     }
 
+    void Playerscore()
+    {
+        //피버 상태라면 2배의 점수를 얻는다.
+        if(GameManager.Instance.isFever == true)
+        {   //단 0보다 작은 수라면 역수로 바꾼다.
+            if(score < 0)
+            {
+                score *= -1;
+            }
+            score *= 2;
+        }
+        else
+        {   //피버 상태가 아니라면 피버를 추가한다.
+            GameManager.Instance.AddFever();
+        }
+        
+        GameManager.Instance.AddScore(score);
+        Destroy(this.gameObject);
+    }
 }
