@@ -248,6 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f605c0c1055d7408bab8ac18904413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audio: {fileID: 0}
   Startclip: {fileID: 8300000, guid: 482f08fd1e7fb9141a86d07e35737b9d, type: 3}
   Gameclip: {fileID: 8300000, guid: df18ffda5f43fd84cac33830097c4e0f, type: 3}
   Feverclip: {fileID: 8300000, guid: 3a5ea6fec882f6a4a95c3ea764fa2282, type: 3}

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Rtan : MonoBehaviour
 {
     AudioSource audio;
-    AudioClip clip;
+    public AudioClip clip;
 
     float direction;
 
@@ -18,6 +18,7 @@ public class Rtan : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audio = GetComponent<AudioSource>();
         Application.targetFrameRate = 60;
         Debug.Log("¾È³ç");
         direction = 0.05f;
