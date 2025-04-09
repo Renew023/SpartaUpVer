@@ -4,46 +4,39 @@ using UnityEngine;
 
 public class Rtan : MonoBehaviour
 {
-    public CapsuleCollider2D RtanCollision;
 
     float direction;
 
     public Animator anim;
-    Vector2 DefaultCollison = new Vector2(1.0f, 2.0f);
+    Vector2 DefaultScale = new Vector2(1.0f, 1.0f);
+    Vector2 DefaultPosition;
+
+    bool isFever = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        RtanCollision = GetComponent<CapsuleCollider2D>();
         Application.targetFrameRate = 60;
         Debug.Log("안녕");
-        direction = 0.02f;
+        direction = 0.05f;
+        DefaultPosition = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.Instance.isFever == true)
-        {
-            RtanCollision.size = new Vector2(DefaultCollison.x*2, DefaultCollison.y * 2);
-        }
-        else
-        {
-            RtanCollision.size = new Vector2(DefaultCollison.x, DefaultCollison.y);
-        }
-
         if (Input.GetMouseButtonDown(0))
         {
             direction *= -1;
             if(direction > 0f)
             {
                 Debug.Log("1감지");
-                transform.localScale = new Vector3(1, 1, 1);
+                Flip();
             }
             else
             {
                 Debug.Log("2감지");
-                transform.localScale = new Vector3(-1, 1, 1);
+                Flip();
             }
         }
 
@@ -51,14 +44,38 @@ public class Rtan : MonoBehaviour
         {
             Debug.Log("3감지");
             direction = 0.05f;
-            transform.localScale = new Vector3(1, 1, 1);
+            Flip();
         }
         if(transform.localPosition.x < -2.0f)
         {
             Debug.Log("4감지");
             direction = -0.05f;
-            transform.localScale = new Vector3(-1, 1, 1);
+            Flip();
         }
+
+        //피버 및 방향 설정
+        //피버가 아닐 때
+        if(isFever == false)
+        {   //피버가 되었는지 확인
+            if (GameManager.Instance.isFever == true)
+            {   //피버라면 스케일*2, 위치값 +0.75
+                DefaultScale = DefaultScale * 2.0f;
+                transform.position = new Vector2(transform.position.x, DefaultPosition.y + 0.75f);
+                transform.localScale = DefaultScale;
+                isFever = true;
+            }
+        }
+        else //피버일 때
+        {   //게임매니저의 피버가 풀렸는지 확인
+            if (GameManager.Instance.isFever == false)
+            {   //피버가 해재되면 스케일/2, 위치값 기본값으로
+                DefaultScale = DefaultScale / 2.0f;
+                transform.position = new Vector2(transform.position.x, DefaultPosition.y);
+                transform.localScale = DefaultScale;
+                isFever = false;
+            }
+        }
+
         transform.position += Vector3.left * direction;
     }
     
@@ -68,5 +85,11 @@ public class Rtan : MonoBehaviour
         {
             anim.SetTrigger("Isbubble");
         }
+    }
+
+    void Flip()
+    {
+        DefaultScale = new Vector2(DefaultScale.x * -1, DefaultScale.y);
+        transform.localScale = DefaultScale;
     }
 }

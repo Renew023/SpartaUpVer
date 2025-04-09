@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     AudioSource audio;
     public AudioClip Startclip;
     public AudioClip Gameclip;
+    public AudioClip Feverclip;
 
     private void Awake()
     {
@@ -31,10 +32,14 @@ public class AudioManager : MonoBehaviour
         audio.Play();
     }
 
-    public void musicChanage()
+    public void musicChange()
     {
-        audio.Pause();
         audio.clip = Gameclip;
+        audio.Play();
+    }
+    public void FeverChange()
+    {
+        audio.clip = Feverclip;
         audio.Play();
     }
 }

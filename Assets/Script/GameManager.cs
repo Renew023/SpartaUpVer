@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public bool isFever = false;
 
     int totalScore;
+    [SerializeField]
     float fever = 0.0f;
     bool isInvoke = false;
 
@@ -35,7 +36,7 @@ public class GameManager : MonoBehaviour
         {
             //피버 상태로 만들어라.
             isFever = true;
-            
+            AudioManager.Instance.FeverChange();
         }
         
         //피버상태일 때,
@@ -44,12 +45,14 @@ public class GameManager : MonoBehaviour
             //Invoke가 켜져 있지 않다면,
             if(isInvoke == false)
             {   //피버를 줄이는 Invoke를 실행해라.
-                InvokeRepeating("FeverDown", 0f, 0.5f);
+                InvokeRepeating("FeverDown", 1f, 0.5f);
                 isInvoke = true;
             }
             if(fever < 0.0f)
             {
                 isFever = false;
+                fever = 0.0f;
+                AudioManager.Instance.musicChange();
                 //피버가 종료되면 Invoke를 꺼라.
                 CancelInvoke("FeverDown");
                 isInvoke = false;
