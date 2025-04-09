@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class Rtan : MonoBehaviour
 {
+    public CapsuleCollider2D RtanCollision;
+
     float direction;
 
     public Animator anim;
+    Vector2 DefaultCollison = new Vector2(1.0f, 2.0f);
 
     // Start is called before the first frame update
     void Start()
     {
-        //Application.targetFrameRate = 60;
+        RtanCollision = GetComponent<CapsuleCollider2D>();
+        Application.targetFrameRate = 60;
         Debug.Log("¾È³ç");
         direction = 0.02f;
     }
@@ -19,6 +23,15 @@ public class Rtan : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(GameManager.Instance.isFever == true)
+        {
+            RtanCollision.size = new Vector2(DefaultCollison.x*2, DefaultCollison.y * 2);
+        }
+        else
+        {
+            RtanCollision.size = new Vector2(DefaultCollison.x, DefaultCollison.y);
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             direction *= -1;
@@ -56,5 +69,4 @@ public class Rtan : MonoBehaviour
             anim.SetTrigger("Isbubble");
         }
     }
-    
 }
