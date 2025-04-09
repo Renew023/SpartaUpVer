@@ -43,13 +43,18 @@ public class Rtan : MonoBehaviour
         if(transform.localPosition.x > 2.0f)
         {
             Debug.Log("3감지");
+
+            //아래 코드 변경 시 벽으로 들어가거나 제자리에 있음.
             direction = 0.05f;
             Flip();
         }
         if(transform.localPosition.x < -2.0f)
         {
             Debug.Log("4감지");
+
+            //아래 코드 변경 시 벽으로 들어가거나 제자리에 있음.
             direction = -0.05f;
+
             Flip();
         }
 
