@@ -1551,7 +1551,6 @@ MonoBehaviour:
   totalRain: 0
   fever: 0
   Speed: 1
-  audio: {fileID: 0}
 --- !u!4 &1524245492
 Transform:
   m_ObjectHideFlags: 0
@@ -2214,6 +2213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: a9e5839f68cc2e24480d219c36d0e2fe, type: 3}
+  monsterCut: {fileID: 8300000, guid: f8ceff5fe9e84b248baa97ddf78c9aed, type: 3}
   anim: {fileID: 3869607467291745478}
 --- !u!70 &3869607467291745482
 CapsuleCollider2D:
@@ -2261,7 +2261,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

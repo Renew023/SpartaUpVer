@@ -6,6 +6,7 @@ public class Rtan : MonoBehaviour
 {
     AudioSource audio;
     public AudioClip clip;
+    public AudioClip monsterCut;
 
     float direction;
 
@@ -95,6 +96,11 @@ public class Rtan : MonoBehaviour
         if (collision.gameObject.CompareTag("Bubble"))
         {
             audio.PlayOneShot(clip);
+            anim.SetTrigger("Isbubble");
+        }
+        if (collision.gameObject.CompareTag("Monster"))
+        {
+            audio.PlayOneShot(monsterCut);
             anim.SetTrigger("Isbubble");
         }
     }

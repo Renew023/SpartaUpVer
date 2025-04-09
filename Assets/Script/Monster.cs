@@ -8,11 +8,7 @@ public class Monster : MonoBehaviour
     public int Type;
   
     public Text statusText;
-
     public SpriteRenderer renderer;
-    public AudioClip clip;
-
-    AudioSource audio;
 
     int status = 0;
 
@@ -20,7 +16,7 @@ public class Monster : MonoBehaviour
     void Start()
     {
         //renderer = GetComponent<SpriteRenderer>();
-        audio = GetComponent<AudioSource>();
+        //audio = GetComponent<AudioSource>();
 
         float x = Random.Range(-1.8f, 1.8f);
         float y = Random.Range(3.0f, 4.0f);
@@ -32,6 +28,7 @@ public class Monster : MonoBehaviour
 
         status = Random.Range(1, GameManager.Instance.totalRain) + GameManager.Instance.totalScore;
         statusText.text = status.ToString();
+
     }
 
     // Update is called once per frame
@@ -43,7 +40,7 @@ public class Monster : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("몬스터 충돌");
-        if(collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground"))
         {
             GameManager.Instance.EndGame();
         }
@@ -73,7 +70,7 @@ public class Monster : MonoBehaviour
         {   //피버 상태가 아니라면 피버를 추가한다.
             GameManager.Instance.AddFever();
         }
-        audio.PlayOneShot(clip);
+        Debug.Log("몬스터커트");
         GameManager.Instance.AddScore(status);
         Destroy(this.gameObject);
     }

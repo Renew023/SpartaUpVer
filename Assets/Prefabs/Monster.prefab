@@ -51,6 +51,7 @@ MonoBehaviour:
   Type: 0
   statusText: {fileID: 2381171336955869979}
   renderer: {fileID: 3723209272470574278}
+  audio: {fileID: 6818064537930485135}
   clip: {fileID: 8300000, guid: f8ceff5fe9e84b248baa97ddf78c9aed, type: 3}
 --- !u!58 &6740767907192815825
 CircleCollider2D:
@@ -102,7 +103,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0.3
+  m_GravityScale: 0.1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
     string key = "bestScore";
 
     bool isInvoke = false;
-    public AudioSource audio;
 
     private void Awake()
     {
