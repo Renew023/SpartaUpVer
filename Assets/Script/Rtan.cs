@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Rtan : MonoBehaviour
 {
+    AudioSource audio;
+    AudioClip clip;
 
     float direction;
 
@@ -31,12 +33,14 @@ public class Rtan : MonoBehaviour
             if(direction > 0f)
             {
                 Debug.Log("1감지");
-                Flip();
+                DefaultScale = new Vector2(Mathf.Abs(DefaultScale.x) * 1, DefaultScale.y);
+                transform.localScale = DefaultScale;
             }
             else
             {
                 Debug.Log("2감지");
-                Flip();
+                DefaultScale = new Vector2(Mathf.Abs(DefaultScale.x)* -1, DefaultScale.y);
+                transform.localScale = DefaultScale;
             }
         }
 
@@ -63,7 +67,8 @@ public class Rtan : MonoBehaviour
         if(isFever == false)
         {   //피버가 되었는지 확인
             if (GameManager.Instance.isFever == true)
-            {   //피버라면 스케일*2, 위치값 +0.75
+            {
+                Debug.Log("1");//피버라면 스케일*2, 위치값 +0.75
                 DefaultScale = DefaultScale * 2.0f;
                 transform.position = new Vector2(transform.position.x, DefaultPosition.y + 0.75f);
                 transform.localScale = DefaultScale;
@@ -88,6 +93,7 @@ public class Rtan : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bubble"))
         {
+            audio.PlayOneShot(clip);
             anim.SetTrigger("Isbubble");
         }
     }

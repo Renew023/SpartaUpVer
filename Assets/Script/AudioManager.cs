@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
     // Start is called before the first frame update
 
-    AudioSource audio;
+    public AudioSource audio;
     public AudioClip Startclip;
     public AudioClip Gameclip;
     public AudioClip Feverclip;
@@ -39,7 +39,9 @@ public class AudioManager : MonoBehaviour
     }
     public void FeverChange()
     {
+        Debug.Log("2");
         audio.clip = Feverclip;
         audio.Play();
+        //audio.PlayOneShot(Feverclip);
     }
 }
