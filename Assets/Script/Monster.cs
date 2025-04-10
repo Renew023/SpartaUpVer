@@ -9,7 +9,8 @@ public class Monster : MonoBehaviour
   
     public Text statusText;
     public SpriteRenderer renderer;
-
+    
+    //public int status였다.
     int status = 0;
 
     // Start is called before the first frame update
@@ -26,9 +27,9 @@ public class Monster : MonoBehaviour
         Type = Random.Range(1, 7);
         renderer.sprite = Resources.Load<Sprite>($"Bird{Type}");
 
+        //밑에 글을 int status라고 적었었다.
         status = Random.Range(1, GameManager.Instance.totalRain) + GameManager.Instance.totalScore;
         statusText.text = status.ToString();
-
     }
 
     // Update is called once per frame
